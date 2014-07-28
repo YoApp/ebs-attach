@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 
 import argparse
 import os
@@ -15,11 +15,15 @@ parser.add_argument('--volumeid', metavar='<VOLUME_ID>', default=os.environ.get(
                     help='Volume ID of EBS volume to attach')
 parser.add_argument('--device', metavar='<DEVICE>', default=os.environ.get('DEVICE'),
                     help='Device to expose volume on')
-parser.add_argument('--region', metavar='<REGION>', default=os.environ.get('REGION'),
-                    help='AWS region')
+parser.add_argument('--region', metavar='<REGION>', default=os.environ.get('AWS_REGION'),
+                            help='AWS region in which the EBS resides')
+parser.add_argument('--access-key', metavar='<ACCESS>', default=os.environ.get('AWS_ACCESS_KEY'))
+parser.add_argument('--secret-key', metavar='<SECRET>', default=os.environ.get('AWS_SECRET_KEY'))
 args = parser.parse_args()
 
-conn = boto.ec2.connect_to_region(args.region)
+conn = boto.ec2.connect_to_region(args.region,
+                                  aws_access_key_id=args.access_key,
+                                  aws_secret_access_key=args.secret_key)
 
 instance = requests.get("http://169.254.169.254/latest/meta-data/instance-id").content
 
