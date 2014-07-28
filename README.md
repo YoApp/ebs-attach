@@ -20,4 +20,5 @@ following privileges:
 
 ## Credits
 
-The wonderful @leg100 created the original version of ebs-attach.
+The wonderful [leg100](https://github.com/leg100) created the original version
+of ebs-attach.
