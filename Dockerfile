@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Louis Garman "louisgarman@gmail.com"
+MAINTAINER Zach Latta <zach@justyo.co>
 #
 # install deps/tools
 #
